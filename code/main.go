@@ -17,6 +17,7 @@ func main() {
 	s2 := s1       //  [10, 20]
 	s3 := append(append(append(s1, 1), 2), 3)
 	s1[0] = 1000
+
 	fmt.Println(s1)  //[1000, 20]
 	fmt.Println(s2)  //[1000, 20]
 	fmt.Println(s3)  // [10, 20, 1, 2, 3]
