@@ -22,4 +22,5 @@ func main() {
 	fmt.Println(s2)  //[1000, 20]
 	fmt.Println(s3)  // [10, 20, 1, 2, 3]
 	fmt.Println(arr) // [1000,20,1,2]
+
 }
