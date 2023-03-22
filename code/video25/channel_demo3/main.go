@@ -3,48 +3,49 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 const (
-	NumProducers = 50
-	NumConsumers = 100
-	BufferSize   = 100
+	numProducer = 50
+	numConsumer = 50
+	numTasks    = 1000
 )
 
+var wg sync.WaitGroup
+
+func producer(taskChan chan<- int) {
+	defer wg.Done()
+	for i := 0; i < numTasks; i++ {
+		taskChan <- i
+	}
+}
+
+func consumer(id int, taskChan <-chan int) {
+	defer wg.Done()
+	for {
+		task, ok := <-taskChan
+		if !ok {
+			break
+		}
+		fmt.Printf("Consumer %d received task %d\n", id, task)
+	}
+}
+
 func main() {
-	buffer := make(chan int, BufferSize)
-	var wg sync.WaitGroup
+	taskChan := make(chan int, 10000)
 
-	// Launch producers
-	for i := 0; i < NumProducers; i++ {
+	for i := 0; i < numProducer; i++ {
 		wg.Add(1)
-		go func(id int) {
-			defer wg.Done()
-			for j := 0; j < 200; j++ {
-				buffer <- j
-			}
-		}(i)
+		go producer(taskChan)
 	}
 
-	// Launch consumers
-	for i := 0; i < NumConsumers; i++ {
+	for i := 0; i < numConsumer; i++ {
 		wg.Add(1)
-		go func(id int) {
-			defer wg.Done()
-			for {
-				val, ok := <-buffer
-				if !ok {
-					return
-				}
-				fmt.Println(val)
-			}
-		}(i)
+		go consumer(i, taskChan)
 	}
-
-	// Wait for all producers and consumers to finish
 	wg.Wait()
-	close(buffer)
-	time.Sleep(time.Second)
-	fmt.Println("123")
+	close(taskChan)
+
+	fmt.Println("end!")
+
 }
