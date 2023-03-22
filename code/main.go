@@ -6,6 +6,12 @@ import (
 	"learngo/code/utils"
 )
 
+func foo(x, y int) (a, b int) {
+	a = x + y
+	b = x - y
+	return a, b
+}
+
 func main() {
 	sum1 := utils.Sum(1, 2)
 	sum2 := tools.Sum(1, 2)
@@ -22,5 +28,8 @@ func main() {
 	fmt.Println(s2)  //[1000, 20]
 	fmt.Println(s3)  // [10, 20, 1, 2, 3]
 	fmt.Println(arr) // [1000,20,1,2]
+
+	a, b := foo(10, 1)
+	fmt.Println(a, b)
 
 }
