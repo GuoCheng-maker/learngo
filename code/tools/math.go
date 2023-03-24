@@ -4,6 +4,8 @@ import "fmt"
 
 var name = "guocheng"
 
+const hahaha = "guocheng"
+
 var Name = "test"
 
 func Sum(x, y int) int {
