@@ -13,6 +13,8 @@ func foo(x, y int) (a, b int) {
 }
 
 func main() {
+	fmt.Println(tools.Name)
+	// fmt.Println(tools.name) // 首字母小写不能访问
 	sum1 := utils.Sum(1, 2)
 	sum2 := tools.Sum(1, 2)
 	println(sum1, sum2)
