@@ -36,10 +36,10 @@ func beat(arg sayer) {
 }
 
 func main() {
-	//c1 := cat{}
-	//beat(c1)
-	//d1 := dog{}
-	//beat(d1)
+	c1 := cat{}
+	beat(c1)
+	d1 := dog{}
+	beat(d1)
 
 	var s1 sayer
 	p1 := person{name: "小王子"}
