@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"learngo/code/tools"
-	"learngo/code/utils"
+	"learngo/utils/tools"
+	"learngo/utils/utils"
 )
 
 func foo(x, y int) (a, b int) {

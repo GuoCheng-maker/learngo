@@ -1,6 +1,8 @@
 package weather
 
-import "learngo/code/calc"
+import (
+	"learngo/utils/calc"
+)
 
 func Snow() {
 	calc.SayHelloSub()
