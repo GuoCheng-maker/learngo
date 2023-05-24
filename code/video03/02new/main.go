@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 func main() {
@@ -25,4 +26,13 @@ func main() {
 	// 4.new函数的返回值是指针，make函数的返回值是引用类型
 	// 5.new函数的返回值是类型的零值，make函数的返回值是类型的初始化值
 
+	var sl1 []int
+	fmt.Println(sl1, reflect.TypeOf(sl1))
+	sl1 = append(sl1, 100)
+	sl1 = append(sl1, []int{1, 2, 3, 4, 5}...)
+	fmt.Println(sl1)
+	var m1 map[string]int
+	fmt.Println(m1, reflect.TypeOf(m1))
+	m1["key1"] = 10
 }
+
